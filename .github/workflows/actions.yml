@@ -15,9 +15,16 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'  # Adjust if you're using a different version
 
       - name: Print environment
         run: echo "Running in ${{ github.event.inputs.environment }} environment"
@@ -25,7 +32,11 @@ jobs:
       - name: Use ACCESS_TOKEN
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: echo "ACCESS_TOKEN is set"
+
+      - name: Compile Java project
+        run: mvn compile
+
+      - name: Run CompanyTest.java
         run: |
-          echo "Using ACCESS_TOKEN: $ACCESS_TOKEN"
-          # Replace with your actual command, e.g.:
-          # curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.example.com/data
+          java -cp target/classes com.yourpackage.CompanyTest
