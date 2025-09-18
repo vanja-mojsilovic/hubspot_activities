@@ -1,0 +1,20 @@
+.env
+.idea/
+# Maven build artifacts
+/target/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Java class files
+*.class
+
+# Eclipse or NetBeans (if used)
+*.iml
+*.ipr
+*.iws
