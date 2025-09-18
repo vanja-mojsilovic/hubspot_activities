@@ -223,6 +223,12 @@ public class CompanyActivities extends AbstractClass {
     }
 
     public void findCompaniesWithPermanentlyClosureNotes(String token) throws IOException {
+        boolean hasMoreCompanies = true;
+        String after = null;
+        int companyCount = 0;
+        int companyLimit = 10; // change the number of companies
+        int companyOrderNum = 0;
+        int matchCount = 0;
         Path outputPath = Paths.get("permanently_closed_notes.csv");
         PrintWriter writer = new PrintWriter(Files.newBufferedWriter(outputPath));
         writer.println(String.join(",", escapeCsv(new String[]{"Company ID", "Company Name", "Note ID", "Created Date", "Note Body"})));
@@ -260,12 +266,7 @@ public class CompanyActivities extends AbstractClass {
                 "7933031473","3827954905","29863185438","29821277329","200077861","271729663","271716018",
                 "10824870492"
         ));
-        boolean hasMoreCompanies = true;
-        String after = null;
-        int companyCount = 0;
-        int companyLimit = 3000;
-        int companyOrderNum = 0;
-        int matchCount = 0;
+
 
 
         while (hasMoreCompanies && companyCount < companyLimit) {

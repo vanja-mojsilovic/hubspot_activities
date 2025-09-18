@@ -1,0 +1,31 @@
+name: Actions Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print environment
+        run: echo "Running in ${{ github.event.inputs.environment }} environment"
+
+      - name: Use ACCESS_TOKEN
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          echo "Using ACCESS_TOKEN: $ACCESS_TOKEN"
+          # Replace with your actual command, e.g.:
+          # curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.example.com/data
