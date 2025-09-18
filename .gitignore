@@ -1,7 +1,7 @@
 .env
 .idea/
 # Maven build artifacts
-/target/
+/src/main/java/com/target/
 
 # Logs and temp files
 *.log
