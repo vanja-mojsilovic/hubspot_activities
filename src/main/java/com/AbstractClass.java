@@ -31,7 +31,7 @@ public abstract class AbstractClass {
     }
 
 
-    protected String[] escapeCsv(String[] fields) {
+    public String[] escapeCsv(String[] fields) {
         String[] escaped = new String[fields.length];
         for (int i = 0; i < fields.length; i++) {
             String field = fields[i];

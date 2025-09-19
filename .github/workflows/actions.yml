@@ -38,5 +38,11 @@ jobs:
       - name: Run CompaniesTest
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_ENVIRONMENT: ${{ github.event.inputs.environment }}
         run: java -cp "target/classes:target/dependency/*" com.CompaniesTest
 
+      - name: Upload results CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: permanently_closed_notes
+          path: permanently_closed_notes.csv
