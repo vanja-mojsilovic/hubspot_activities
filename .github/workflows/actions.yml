@@ -45,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: permanently_closed_notes
-          path: permanently_closed_notes.csv
+          path: permanently_closed_notes_${{ github.event.inputs.environment }}.csv
