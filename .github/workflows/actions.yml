@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'  # Adjust if you're using a different version
+          java-version: '17'
 
       - name: Print environment
         run: echo "Running in ${{ github.event.inputs.environment }} environment"
@@ -37,6 +37,8 @@ jobs:
       - name: Compile Java project
         run: mvn compile
 
-      - name: Run CompanyTest.java
-        run: |
-          java -cp target/classes com.CompaniesTest
+      - name: Copy dependencies
+        run: mvn dependency:copy-dependencies
+
+      - name: Run CompaniesTest
+        run: java -cp "target/classes:target/dependency/*" com.CompaniesTest
