@@ -228,7 +228,7 @@ public class CompanyActivities extends AbstractClass {
         boolean hasMoreCompanies = true;
         String after = null;
         int companyCount = 0;
-        int companyLimit = 10; // change the number of companies
+        int companyLimit = 200; // change the number of companies
         int companyOrderNum = 0;
         int matchCount = 0;
         Path outputPath = Paths.get("permanently_closed_notes.csv");
