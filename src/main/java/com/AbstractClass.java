@@ -14,13 +14,22 @@ public abstract class AbstractClass {
 
 
     protected String getAccessToken() {
-        Dotenv dotenv = Dotenv.load();
-        String token = dotenv.get("ACCESS_TOKEN");
+        String token = System.getenv("ACCESS_TOKEN");
+
         if (token == null || token.isEmpty()) {
-            throw new IllegalStateException("ACCESS_TOKEN is missing. Set it in your .env file.");
+            Dotenv dotenv = Dotenv.configure()
+                    .ignoreIfMissing()
+                    .load();
+            token = dotenv.get("ACCESS_TOKEN");
         }
+
+        if (token == null || token.isEmpty()) {
+            throw new IllegalStateException("ACCESS_TOKEN is missing. Set it in your .env file or as an environment variable.");
+        }
+
         return token;
     }
+
 
     protected String[] escapeCsv(String[] fields) {
         String[] escaped = new String[fields.length];
