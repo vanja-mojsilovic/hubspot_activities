@@ -29,11 +29,6 @@ jobs:
       - name: Print environment
         run: echo "Running in ${{ github.event.inputs.environment }} environment"
 
-      - name: Use ACCESS_TOKEN
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: echo "ACCESS_TOKEN is set"
-
       - name: Compile Java project
         run: mvn compile
 
@@ -41,4 +36,7 @@ jobs:
         run: mvn dependency:copy-dependencies
 
       - name: Run CompaniesTest
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: java -cp "target/classes:target/dependency/*" com.CompaniesTest
+
