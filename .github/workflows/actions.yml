@@ -39,4 +39,4 @@ jobs:
 
       - name: Run CompanyTest.java
         run: |
-          java -cp target/classes com.CompanyTest
+          java -cp target/classes com.CompaniesTest

@@ -1,3 +1,6 @@
+package com;
+
+
 import java.io.IOException;
 
 public class CompaniesTest extends AbstractClass {
